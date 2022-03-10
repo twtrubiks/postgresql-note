@@ -1,0 +1,23 @@
+version: '3.5'
+services:
+
+ db:
+    restart: always
+    image: postgres:12
+    environment:
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - POSTGRES_DB=postgres
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    # command: postgres -c 'shared_buffers=2GB' -c 'max_connections=520' -c 'effective_cache_size=3GB'
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U odoo"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - db-data:/var/lib/postgresql/data/pgdata
+    #   - ./test:/var/tmp
+
+volumes:
+  db-data:
