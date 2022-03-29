@@ -1,6 +1,6 @@
 # postgresql-note
 
-主要是紀錄一些 postgresql 的指令📝
+主要是紀錄一些 Postgresql 的指令📝
 
 ( 本篇文章會持續更新:smile: )
 
@@ -291,3 +291,7 @@ LIMIT  20;
 ```
 
 一些範例以及教學的 SQL 放在 [example.sql](https://github.com/twtrubiks/postgresql-note/blob/main/example.sql) 中.
+
+## 延伸閱讀
+
+* [pg-listen-notify](https://github.com/twtrubiks/postgresql-note/tree/main/pg-listen-notify) - 介紹 postgresql 中的 LISTEN/NOTIFY

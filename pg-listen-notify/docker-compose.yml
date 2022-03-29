@@ -1,0 +1,17 @@
+version: '3.5'
+services:
+  db:
+    image: postgres:12.8
+    ports:
+       - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=demo
+      - POSTGRES_PASSWORD=demo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - demo-db-data:/var/lib/postgresql/data/pgdata
+      - ./test:/var/tmp
+
+volumes:
+  demo-db-data:
