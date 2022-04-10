@@ -30,6 +30,16 @@ psql -U username -d dbname
 
 `-d` `--dbname=DBNAME` database name to connect to (default: "postgres")
 
+如果想要連到遠端的 PostgreSQL
+
+```cmd
+psql -h remote_server_ip -p port -U username -d dbname
+```
+
+`-h`, `--host=HOSTNAME` database server host or socket directory (default: "localhost")
+
+`-p`, `--port=PORT` database server port (default: "5432")
+
 建立 database
 
 ```cmd
@@ -237,6 +247,44 @@ ALTER TABLE hr_expense ALTER COLUMN id SET DEFAULT nextval('hr_expense_id_seq');
 推薦一個網站 [https://pgtune.leopard.in.ua](https://pgtune.leopard.in.ua)
 
 可以把你的配置需求填入, 它會幫你算出需要設定的參數.
+
+以下指令可以查看 `postgresql.conf` 設定
+
+查看 max_connections 設定,
+
+```cmd
+postgres=# show max_connections;
+ max_connections
+-----------------
+ 100
+(1 row)
+```
+
+查看 listen_addresses 設定,
+
+```cmd
+postgres=# show listen_addresses;
+ listen_addresses
+------------------
+ *
+(1 row)
+```
+
+一次查看全部的設定
+
+```cmd
+show all;
+```
+
+如果要查詢 `postgresql.conf` 的路徑
+
+```cmd
+postgres=# SHOW config_file;
+                   config_file
+-------------------------------------------------
+ /var/lib/postgresql/data/pgdata/postgresql.conf
+(1 row)
+```
 
 ## pg_stat_activity
 
