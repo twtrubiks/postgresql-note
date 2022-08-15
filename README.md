@@ -30,6 +30,16 @@ psql -U username -d dbname
 
 `-d` `--dbname=DBNAME` database name to connect to (default: "postgres")
 
+如果想要連到遠端的 PostgreSQL
+
+```cmd
+psql -h remote_server_ip -p port -U username -d dbname
+```
+
+`-h`, `--host=HOSTNAME` database server host or socket directory (default: "localhost")
+
+`-p`, `--port=PORT` database server port (default: "5432")
+
 建立 database
 
 ```cmd
@@ -238,6 +248,44 @@ ALTER TABLE hr_expense ALTER COLUMN id SET DEFAULT nextval('hr_expense_id_seq');
 
 可以把你的配置需求填入, 它會幫你算出需要設定的參數.
 
+以下指令可以查看 `postgresql.conf` 設定
+
+查看 max_connections 設定,
+
+```cmd
+postgres=# show max_connections;
+ max_connections
+-----------------
+ 100
+(1 row)
+```
+
+查看 listen_addresses 設定,
+
+```cmd
+postgres=# show listen_addresses;
+ listen_addresses
+------------------
+ *
+(1 row)
+```
+
+一次查看全部的設定
+
+```cmd
+show all;
+```
+
+如果要查詢 `postgresql.conf` 的路徑
+
+```cmd
+postgres=# SHOW config_file;
+                   config_file
+-------------------------------------------------
+ /var/lib/postgresql/data/pgdata/postgresql.conf
+(1 row)
+```
+
 ## pg_stat_activity
 
 查看有多少 process, 可以想成目前有多少 user 連線
@@ -295,3 +343,5 @@ LIMIT  20;
 ## 延伸閱讀
 
 * [pg-listen-notify](https://github.com/twtrubiks/postgresql-note/tree/main/pg-listen-notify) - 介紹 postgresql 中的 LISTEN/NOTIFY
+
+* [pg-master-slave](https://github.com/twtrubiks/postgresql-note/tree/main/pg-master-slave) - 介紹 postgresql 中的 master-slave 架構
