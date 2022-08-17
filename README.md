@@ -345,3 +345,5 @@ LIMIT  20;
 * [pg-listen-notify](https://github.com/twtrubiks/postgresql-note/tree/main/pg-listen-notify) - 介紹 postgresql 中的 LISTEN/NOTIFY
 
 * [pg-master-slave](https://github.com/twtrubiks/postgresql-note/tree/main/pg-master-slave) - 介紹 postgresql 中的 master-slave 架構
+
+* [pgbouncer-tutorial](https://github.com/twtrubiks/postgresql-note/tree/main/pgbouncer-tutorial) - 介紹 pgbouncer 如何搭配 postgresql
