@@ -8,11 +8,66 @@ SELECT extract( month FROM TIMESTAMP '2017-08-11' )::int AS month;
 SELECT (split_part('2017-08-11', '-', 1)) AS year;
 SELECT (split_part('2017-08-11', '-', 3)) AS day;
 
+-- ||
+SELECT 'A' || ' ' || 'B' AS result_string;
+SELECT 'A' || NULL AS result_string; -- NULL
+
+-- CONCAT
+SELECT CONCAT('A', ' ', 'B') AS result_string;
+-- ignores the NULL arguments.
+SELECT CONCAT('A', NULL, 'B') AS result_string;
+
+-- mod
+SELECT MOD(10, 10);
+SELECT MOD(1, 10);
+SELECT MOD(12, 10);
+
 -- round
 SELECT round(10::numeric, 3);
 
+-- interval
+SELECT now(), now() - INTERVAL '3 days' AS "3 days ago";
+SELECT now(), now() - INTERVAL '10 days 10 minutes' AS "10 days 10 minutes ago";
+
+-- generate_series(start, stop, step interval)
+SELECT * FROM generate_series(2,4);
+SELECT * FROM generate_series(5,1,-2);
+
+SELECT current_date + s AS dates
+FROM generate_series(0,14,7) AS s;
+
+SELECT *
+FROM generate_series('2022-08-01 00:00'::timestamp,'2022-08-04 12:00', '6 hours');
+
+SELECT date
+FROM generate_series('2022-8-01'::date, '2022-8-10'::date, '1 day'::interval) as date;
+
+SELECT 'test' || MOD(i, 10) AS name,
+       Md5(i :: text),
+       '2022-08-01 00:00:00' :: timestamptz +
+	   ( MOD(i, 10) || ' day' ) :: interval +
+	   ( MOD(i, 3600) || ' sec' ) :: interval AS time
+FROM   generate_series(1, 10) AS i;
+
+
+-- ARRAY
+SELECT ARRAY['a', 'b', 'c'];
+SELECT (ARRAY[1, 2, 6])[3];
+
+-- array_to_string
+SELECT array_to_string(ARRAY['A', 'B', 'C'], ',');
+
 -- expand an array to a set of rows.
-SELECT unnest(ARRAY[1,2]);
+SELECT unnest(ARRAY['A', 'B', 'C', 'D']);
+
+-- array_agg
+SELECT array_agg(i::date)
+FROM generate_series('2022-12-01'::date, '2022-12-03'::date, '1 day'::interval) as i ;
+
+-- with ordinality
+SELECT x.val, x.id
+FROM unnest(array['A', 'B', 'C', 'D'])
+with ordinality as x(id, val);
 
 -- DELETE
 DELETE FROM table_name

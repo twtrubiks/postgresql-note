@@ -1,6 +1,6 @@
 # Postgresql master-slave 教學
 
-* [Youtube Tutorial - (等待新增)Postgresql 教學 master-slave]()
+* [Youtube Tutorial - Postgresql 教學 master-slave](https://youtu.be/zxxzcpvCa6o)
 
 ## 介紹 master-slave 主從複寫
 
