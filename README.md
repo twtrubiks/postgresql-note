@@ -342,6 +342,8 @@ LIMIT  20;
 
 ## 延伸閱讀
 
+* [avoid-sql-injection-tutorial](https://github.com/twtrubiks/postgresql-note/tree/main/avoid-sql-injection-tutorial) - 認識避免 SQL injection
+
 * [pg-listen-notify](https://github.com/twtrubiks/postgresql-note/tree/main/pg-listen-notify) - 介紹 postgresql 中的 LISTEN/NOTIFY
 
 * [pg-master-slave](https://github.com/twtrubiks/postgresql-note/tree/main/pg-master-slave) - 介紹 postgresql 中的 master-slave 架構
