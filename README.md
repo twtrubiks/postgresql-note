@@ -344,6 +344,8 @@ LIMIT  20;
 
 * [avoid-sql-injection-tutorial](https://github.com/twtrubiks/postgresql-note/tree/main/avoid-sql-injection-tutorial) - 認識避免 SQL injection
 
+* [pg-lock-tutorial](https://github.com/twtrubiks/postgresql-note/tree/main/pg-lock-tutorial) - 認識 Lock 以及 Transactions
+
 * [pg-listen-notify](https://github.com/twtrubiks/postgresql-note/tree/main/pg-listen-notify) - 介紹 postgresql 中的 LISTEN/NOTIFY
 
 * [pg-master-slave](https://github.com/twtrubiks/postgresql-note/tree/main/pg-master-slave) - 介紹 postgresql 中的 master-slave 架構
