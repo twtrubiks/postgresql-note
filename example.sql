@@ -123,9 +123,51 @@ SELECT *
 FROM   tmp;
 
 -- DISTINCT
-SELECT DISTINCT column1
-FROM table_name
-WHERE column_name operator value;
+-- psql -U username -d dbname < demo_data/distinct_tutorial_dump.sql
+SELECT * FROM distinct_tutorial order by id;
+
+SELECT DISTINCT amount FROM distinct_tutorial;
+
+-- 會依照 兩個 fields 來看
+SELECT DISTINCT amount, user_id FROM distinct_tutorial;
+
+-- 只會撈出 group by amount 的第一次出現項目 (多餘的不會顯示), 並且個別分組依照 id 排序 desc
+SELECT DISTINCT on (amount) * FROM distinct_tutorial order by amount, id desc;
+
+-- 只會撈出 group by amount 的第一次出現項目 (多餘的不會顯示), 並且個別分組依照 id 排序 asc
+SELECT DISTINCT on (amount) * FROM distinct_tutorial order by amount, id asc;
+
+-- 找出重複的 amount 個別數量
+SELECT amount, COUNT(*) FROM distinct_tutorial
+GROUP BY amount HAVING COUNT(*) > 1
+
+-- 刪除重複的 amount rows.
+-- 透過 DELETE FROM ... USING ...
+-- Syntax: DELETE FROM table_name row1 USING table_name row2 WHERE condition;
+DELETE FROM
+    distinct_tutorial a
+        USING distinct_tutorial b
+WHERE
+    a.id < b.id AND a.amount = b.amount;
+
+-- a sequential integer to each row
+SELECT id, amount, user_id, ROW_NUMBER() OVER (ORDER BY id)
+FROM distinct_tutorial where amount=100 order by id asc;
+
+-- a sequential integer to each group row
+SELECT id, amount, user_id, ROW_NUMBER() OVER (PARTITION BY amount)
+FROM distinct_tutorial;
+
+-- 搭配 ROW_NUMBER 刪除重複的 row
+DELETE
+FROM distinct_tutorial
+WHERE id in
+       (SELECT id
+           FROM
+              (SELECT id,
+                      ROW_NUMBER() OVER (PARTITION BY amount) AS row_num
+                  FROM distinct_tutorial) t
+           WHERE t.row_num > 1 );
 
 -- MAX
 -- psql -U username -d dbname < demo_data/group_by_having_tutorial_dump.sql

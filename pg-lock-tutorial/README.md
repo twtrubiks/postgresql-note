@@ -30,6 +30,8 @@ Share Locks - 共享鎖
 
 如果資料加上共享鎖，則該物件可以被其他事務讀取，但不能修改
 
+更多的 Lock Modes 細節可參考 [Databases-Practical PostgreSQL](https://www.linuxtopia.org/online_books/database_guides/Practical_PostgreSQL_database/PostgreSQL_r27479.htm)
+
 ## 測試前請關閉 autocommit
 
 使用 [pgadmin4](https://github.com/twtrubiks/docker-pgadmin4-tutorial#docker-pgadmin4-tutorial) 測試, 測試前要關閉 autocommit,
@@ -230,3 +232,5 @@ session1 和 session2 互相在等待對方釋放鎖.
 * [Transactions](https://www.postgresql.org/docs/current/tutorial-transactions.html)
 
 * [explicit-locking](https://docs.postgresql.tw/the-sql-language/concurrency-control/explicit-locking)
+
+* [Databases-Practical PostgreSQL](https://www.linuxtopia.org/online_books/database_guides/Practical_PostgreSQL_database/PostgreSQL_r27479.htm)
