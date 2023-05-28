@@ -342,6 +342,8 @@ LIMIT  20;
 
 ## 延伸閱讀
 
+* [pg-jsonb-tutorial](https://github.com/twtrubiks/postgresql-note/tree/main/pg-jsonb-tutorial) - 認識 postgresql 中的 jsonb
+
 * [avoid-sql-injection-tutorial](https://github.com/twtrubiks/postgresql-note/tree/main/avoid-sql-injection-tutorial) - 認識避免 SQL injection
 
 * [pg-lock-tutorial](https://github.com/twtrubiks/postgresql-note/tree/main/pg-lock-tutorial) - 認識 Lock 以及 Transactions
