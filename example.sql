@@ -69,6 +69,25 @@ SELECT x.val, x.id
 FROM unnest(array['A', 'B', 'C', 'D'])
 with ordinality as x(id, val);
 
+-- REGEXP_SPLIT_TO_ARRAY
+SELECT REGEXP_SPLIT_TO_ARRAY('01 02 03', '\s+');
+-- {01,02,03}
+
+-- UNNEST + REGEXP_SPLIT_TO_ARRAY
+SELECT UNNEST(REGEXP_SPLIT_TO_ARRAY('01 02 03', '\s+'));
+
+-- REGEXP_REPLACE
+SELECT REGEXP_REPLACE('你好 test 我是誰aaa', '[A-Za-z]+','');
+-- 你好  我是誰aaa
+
+-- REGEXP_REPLACE
+SELECT REGEXP_REPLACE('你好 test 我是誰aaa', '[A-Za-z]+','','g');
+-- 你好  我是誰
+
+-- SUBSTRING
+SELECT SUBSTRING('0123456789' from 4 for 5);
+-- 34567
+
 -- DELETE
 DELETE FROM table_name
 WHERE column_name operator value;
