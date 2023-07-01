@@ -253,3 +253,35 @@ VALUES (value1, value2);
 -- RESTART IDENTITY -> reset all sequence
 -- CONTINUE IDENTITY -> default
 TRUNCATE table_name RESTART IDENTITY CASCADE;
+
+
+-- SELF JOIN SELF
+-- psql -U username -d dbname < demo_data/test_employee_dump.sql
+
+-- 找出全部有主管的人, 並且列出全部主管名稱
+SELECT
+	emp.id, emp.name, emp.manager_id, manager.name
+FROM test_employee emp
+INNER JOIN test_employee manager ON emp.manager_id = manager.id;
+
+-- 列出全部的細節 (包含沒有主管的)
+SELECT
+	emp.id, emp.name, emp.manager_id, manager.name
+FROM test_employee emp
+LEFT JOIN test_employee manager ON emp.manager_id = manager.id;
+
+-- CROSS JOIN
+-- 讓每個員工互相配對(但不包含自己)
+SELECT
+	emp1.id, emp1.name, emp2.id, emp2.name
+FROM test_employee emp1
+CROSS JOIN test_employee emp2
+WHERE emp1.id != emp2.id;
+
+-- 列出全部的階層(職位小到大)
+SELECT
+	emp.id, emp.name, manager.id, manager.name AS manager_name
+FROM test_employee emp
+LEFT JOIN test_employee manager ON emp.manager_id <= manager.id
+ORDER BY emp.id ASC, manager.id ASC;
+
