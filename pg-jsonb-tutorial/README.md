@@ -1,4 +1,6 @@
-## PostgreSQL json
+## PostgreSQL - json
+
+* [Youtube Tutorial - postgresql 教學 - json jonsb](https://youtu.be/v49HxYdg-q0)
 
 因為是直接字串保存, 所以保存速度比較快, 但是在解析的時候比較慢,
 
@@ -12,7 +14,9 @@ SELECT '{"a":1,   "b":3, "c":4, "c":5}'::json;
 
 官方文件 [JSON 型別](https://docs.postgresql.tw/the-sql-language/data-types/json-types)
 
-## PostgreSQL jsonb
+## PostgreSQL - jsonb
+
+* [Youtube Tutorial - postgresql 教學 - json jonsb](https://youtu.be/v49HxYdg-q0)
 
 轉換成 binary 後才保存, 所以保存速度比較慢, 但解析的時候比較快,
 
