@@ -233,7 +233,6 @@ session 1
 
 ```sql
 UPDATE hr_expense SET total_amount = total_amount+1 WHERE id=26;
-commit;
 select id, total_amount from hr_expense where id=26;
 
  id | total_amount
@@ -243,6 +242,23 @@ select id, total_amount from hr_expense where id=26;
 ```
 
 拿到最新的資料
+
+session 2
+
+```sql
+select id, total_amount from hr_expense where id=26;
+
+ id | total_amount
+----+--------------
+ 26 |          495
+(1 row)
+```
+
+session 1
+
+```sql
+commit;
+```
 
 session 2
 
