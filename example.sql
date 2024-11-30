@@ -140,6 +140,8 @@ WITH tmp
          GROUP  BY user_id)
 SELECT *
 FROM   tmp;
+-- 如果沒特別指定 MATERIALIZED or NOT MATERIALIZED, 會看演算法自行決定.
+-- https://www.postgresql.org/docs/current/queries-with.html#QUERIES-WITH-CTE-MATERIALIZATION
 
 -- DISTINCT
 -- psql -U username -d dbname < demo_data/distinct_tutorial_dump.sql
@@ -245,6 +247,23 @@ AS
           Coalesce(test1, test2, test3, 10) AS new_data
    FROM   coalesce_tutorial
    ORDER  BY id ASC);
+
+-- CREATE MATERIALIZED VIEW
+-- https://www.postgresql.org/docs/current/rules-materializedviews.html#RULES-MATERIALIZEDVIEWS
+-- psql -U username -d dbname < demo_data/coalesce_tutorial_dump.sql
+CREATE MATERIALIZED VIEW coalesce_matview
+AS
+  (SELECT id,
+          Coalesce(test1, test2, test3, 10) AS new_data
+   FROM   coalesce_tutorial
+   ORDER  BY id ASC);
+
+-- 一般的 VIEW 和 MATERIALIZED VIEW 其中差異是假如原始資料修改了,
+-- MATERIALIZED VIEW 不會有任何更新(因為你可以把他想成是一種快照),
+-- 但是 一般的 VIEW 會更新
+
+-- 如果需要更新 MATERIALIZED VIEW
+REFRESH MATERIALIZED VIEW coalesce_matview;
 
 -- INSERT INTO
 INSERT INTO TABLE_NAME (column1, column2)
