@@ -338,7 +338,11 @@ ORDER  BY Pg_total_relation_size(C.oid) DESC
 LIMIT  20;
 ```
 
-一些範例以及教學的 SQL 放在 [example.sql](https://github.com/twtrubiks/postgresql-note/blob/main/example.sql) 中.
+一些範例以及教學的 SQL 放在 [example.sql](https://github.com/twtrubiks/postgresql-note/blob/main/example.sql) 中,
+
+加入 [example_tsvector.sql](example_tsvector.sql) 向量的一些範例 ,
+
+透過向量完成 全文檢索功能 (取代效能差的 like).
 
 ## 延伸閱讀
 
